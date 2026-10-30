@@ -103,14 +103,26 @@ export default function Sections() {
             </button>
           </div>
 
-          <button
-            type="button"
-            className="primary-button"
-            style={{ marginBottom: "16px" }}
-            onClick={() => navigate("/crear-seccion")}
-          >
-            NUEVA SECCIÓN
-          </button>
+          {/* Botones para Crear y Unirse a una sección */}
+          <div style={{ display: "flex", gap: "10px", marginBottom: "16px" }}>
+            <button
+              type="button"
+              className="primary-button"
+              style={{ flex: 1, margin: 0 }}
+              onClick={() => navigate("/crear-seccion")}
+            >
+              NUEVA SECCIÓN
+            </button>
+
+            <button
+              type="button"
+              className="secondary-button"
+              style={{ flex: 1, margin: 0, backgroundColor: "#edf2f7", color: "#2d3748", border: "1px solid #cbd5e0", fontWeight: "bold", borderRadius: "8px", cursor: "pointer" }}
+              onClick={() => navigate("/unirse-seccion")}
+            >
+              UNIRSE A SECCIÓN
+            </button>
+          </div>
         </div>
 
         <div className="scrollable-products-area">
@@ -118,13 +130,12 @@ export default function Sections() {
             <p style={{ textAlign: "center", color: "#666" }}>Cargando secciones...</p>
           ) : secciones.length === 0 ? (
             <p style={{ textAlign: "center", color: "#666", marginTop: "40px" }}>
-              No tienes ninguna sección. ¡Crea una para empezar!
+              No tienes ninguna sección. ¡Crea una o únete a una existente!
             </p>
           ) : (
             secciones.map((sec) => {
               const isOpen = openMenuId === sec.id;
               const numPersonas = sec.miembros ? sec.miembros.length : 1;
-              // Si la sección tiene un código guardado lo usa, si no, usa el ID acortado
               const codigoSeccion = sec.codigo || sec.id.slice(0, 6).toUpperCase();
 
               return (
