@@ -59,7 +59,7 @@ const CATEGORIAS = [
     nombre: "Frutas",
     icono: "🍎",
     subtipos: [
-      "Plátano", "Manzana", "Naranja", "Mandarina", "Pera", "Limón", "Sandía", "Melón", "Kiwi", "Fresas", "Aguacate", "Melocotón", "Uvas", "Piña", "Mango", "Nectarina", "Ciruela", "Cereza", "Lima", "Pomelo", "Paraguayo", "Albaricoque", "Frambuesas", "Arándanos", "Moras", "Papaya", "Coco", "Plátano macho", "Granada", "Caqui", "Chirimoya", "Nísperos", "Membrillo", "Higos", "Brevas", "Dátiles", "Maracuyá", "Fruta de la pasión", "Fruta del dragón", "Lichis", "Guayaba", "Kumquat", "Fruta cortada", "Macedonia de frutas", "Ensalada de frutas", "Coco rallado", "Castañas"
+      "Plátano", "Manzanas", "Naranjas", "Mandarinas", "Peras", "Limones", "Sandía", "Melón", "Kiwis", "Fresas", "Aguacate", "Melocotón", "Uvas", "Piña", "Mango", "Nectarina", "Ciruela", "Cereza", "Lima", "Pomelo", "Paraguayo", "Albaricoque", "Frambuesas", "Arándanos", "Moras", "Papaya", "Coco", "Plátano macho", "Granada", "Caqui", "Chirimoya", "Nísperos", "Membrillo", "Higos", "Brevas", "Dátiles", "Maracuyá", "Fruta de la pasión", "Fruta del dragón", "Lichis", "Guayaba", "Kumquat", "Fruta cortada", "Macedonia de frutas", "Ensalada de frutas", "Coco rallado", "Castañas"
     ],
   },
   {
@@ -120,10 +120,10 @@ const CATEGORIAS = [
   },
   {
     id: "bebidas",
-    nombre: "Bebidas Sin Alcohol",
+    nombre: "Bebidas",
     icono: "🥤",
     subtipos: [
-      "Agua mineral", "Refresco de cola", "Refresco de cola sin azúcar", "Zumo de naranja", "Refresco de naranja", "Refresco de limón", "Cápsulas de café", "Café molido", "Agua con gas", "Bebida isotónica", "Bebida energética", "Agua sin gas", "Agua con sabores", "Agua con vitaminas", "Agua de coco", "Agua tónica", "Refresco de lima-limón", "Refresco de manzana", "Refresco de frutas", "Refresco de té", "Ginger ale", "Ginger beer sin alcohol", "Soda", "Gaseosa", "Bitter sin alcohol", "Bebida energética sin azúcar", "Bebida deportiva", "Bebida de aloe vera", "Zumo de manzana", "Zumo de piña", "Zumo de melocotón", "Zumo de uva", "Zumo de tomate", "Zumo multifrutas", "Zumo de frutos rojos", "Zumo de mango", "Zumo de pera", "Zumo de pomelo", "Néctar de frutas", "Zumo exprimido refrigerado", "Batido de chocolate", "Batido de fresa", "Batido de vainilla", "Batido de plátano", "Batido de frutas", "Batido de proteínas", "Horchata", "Granizado de limón", "Granizado de café", "Café en grano", "Café soluble", "Café descafeinado", "Café en cápsulas descafeinado", "Café listo para beber", "Café frío", "Café con leche envasado", "Preparado para cappuccino", "Preparado para chocolate caliente", "Cacao soluble", "Cacao puro para beber", "Chocolate a la taza", "Té negro", "Té verde", "Té rojo", "Té blanco", "Té matcha", "Té chai", "Té descafeinado", "Infusión de manzanilla", "Infusión de tila", "Infusión de menta poleo", "Infusión de rooibos", "Infusión de jengibre", "Infusión de frutos rojos", "Infusión de valeriana", "Infusión digestiva", "Preparado para limonada", "Limonada", "Leche merengada", "Bebida de avena", "Bebida de soja", "Bebida de almendra", "Bebida de arroz", "Bebida de coco", "Bebida de avellana", "Bebida de guisante", "Bebida vegetal con chocolate"
+      "Fanta naranja", "Fanta limón", "Kas", "Coca-Cola", "Aquarius", "Agua mineral", "Refresco de cola", "Refresco de cola sin azúcar", "Zumo de naranja", "Refresco de naranja", "Refresco de limón", "Cápsulas de café", "Café molido", "Agua con gas", "Bebida isotónica", "Bebida energética", "Agua sin gas", "Agua con sabores", "Agua con vitaminas", "Agua de coco", "Agua tónica", "Refresco de lima-limón", "Refresco de manzana", "Refresco de frutas", "Refresco de té", "Ginger ale", "Ginger beer sin alcohol", "Soda", "Gaseosa", "Bitter sin alcohol", "Bebida energética sin azúcar", "Bebida deportiva", "Bebida de aloe vera", "Zumo de manzana", "Zumo de piña", "Zumo de melocotón", "Zumo de uva", "Zumo de tomate", "Zumo multifrutas", "Zumo de frutos rojos", "Zumo de mango", "Zumo de pera", "Zumo de pomelo", "Néctar de frutas", "Zumo exprimido refrigerado", "Batido de chocolate", "Batido de fresa", "Batido de vainilla", "Batido de plátano", "Batido de frutas", "Batido de proteínas", "Horchata", "Granizado de limón", "Granizado de café", "Café en grano", "Café soluble", "Café descafeinado", "Café en cápsulas descafeinado", "Café listo para beber", "Café frío", "Café con leche envasado", "Preparado para cappuccino", "Preparado para chocolate caliente", "Cacao soluble", "Cacao puro para beber", "Chocolate a la taza", "Té negro", "Té verde", "Té rojo", "Té blanco", "Té matcha", "Té chai", "Té descafeinado", "Infusión de manzanilla", "Infusión de tila", "Infusión de menta poleo", "Infusión de rooibos", "Infusión de jengibre", "Infusión de frutos rojos", "Infusión de valeriana", "Infusión digestiva", "Preparado para limonada", "Limonada", "Leche merengada", "Bebida de avena", "Bebida de soja", "Bebida de almendra", "Bebida de arroz", "Bebida de coco", "Bebida de avellana", "Bebida de guisante", "Bebida vegetal con chocolate"
     ],
   },
   {
@@ -358,7 +358,7 @@ export default function AddProduct() {
                   <input
                     type="text"
                     className="input"
-                    placeholder="🔍 Buscar tipo (ej. yogur, leche...)"
+                    placeholder="🔍 Buscar tipo (ej. fanta, cocacola...)"
                     value={filterText}
                     onChange={(e) => setFilterText(e.target.value)}
                     style={{ marginBottom: "12px" }}
@@ -398,7 +398,7 @@ export default function AddProduct() {
                       <div style={{ display: "flex", gap: "8px" }}>
                         <input
                           className="input custom-type-input"
-                          placeholder="Ej. Salmón ahumado..."
+                          placeholder="Ej. Bebida nueva..."
                           value={customTypeInput}
                           onChange={(e) => setCustomTypeInput(e.target.value)}
                           autoFocus
@@ -511,7 +511,7 @@ export default function AddProduct() {
                       className="primary-button"
                       disabled={loading}
                     >
-                      {loading ? "GUARDANDO..." : "CREAR PRODUCTO"}
+                      {loading ? "GUARDANDO..." : "AÑADIR PRODUCTO"}
                     </button>
 
                     <button

@@ -201,7 +201,8 @@ export default function Lists() {
                   >
                     <div className="list-card-header">
                       <div className="list-title-row">
-                        <span className="list-icon">📋</span>
+                        {/* AQUÍ ESTÁ EL CAMBIO: Usa lista.icono en lugar del fijo */}
+                        <span className="list-icon">{lista.icono || "📋"}</span>
                         <h2 className="list-title">{lista.nombre}</h2>
                       </div>
 

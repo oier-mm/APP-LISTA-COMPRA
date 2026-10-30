@@ -13,6 +13,10 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // Estados para el modal de confirmación de borrado moderno
+  const [productToDelete, setProductToDelete] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+
   const idLista = localStorage.getItem("listaActual");
 
   useEffect(() => {
@@ -43,14 +47,21 @@ export default function Products() {
     }
   };
 
-  const handleDelete = async (id, e) => {
+  const handleOpenDeleteModal = (prod, e) => {
     e.stopPropagation();
-    if (window.confirm("¿Seguro que quieres eliminar este producto?")) {
-      try {
-        await deleteProduct(id);
-      } catch (err) {
-        console.error("Error al eliminar producto:", err);
-      }
+    setProductToDelete(prod);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!productToDelete) return;
+    setDeleting(true);
+    try {
+      await deleteProduct(productToDelete.id);
+      setProductToDelete(null);
+    } catch (err) {
+      console.error("Error al eliminar producto:", err);
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -70,13 +81,13 @@ export default function Products() {
         <span className="product-card-icon">🛒</span>
         
         <div className="product-text-info">
+          {/* TÍTULO PRINCIPAL: Muestra el tipo directamente arriba */}
           <h2 className="product-title-v2">
-            {prod.categoria || prod.nombre}
+            {prod.tipo || prod.nombre}
           </h2>
           
-          {/* SEPARADOS EN DOS PASTILLAS BLANCAS INDEPENDIENTES */}
+          {/* PASTILLA BLANCA INDEPENDIENTE: Solo cantidad */}
           <div className="product-details-row">
-            <span className="product-badge-tipo">Tipo: {prod.tipo || prod.nombre}</span>
             <span className="product-badge-cantidad">Cantidad: {prod.cantidad || 1}</span>
           </div>
 
@@ -101,12 +112,12 @@ export default function Products() {
           <button
             type="button"
             className="delete-product-x-v2"
-            onClick={(e) => handleDelete(prod.id, e)}
+            onClick={(e) => handleOpenDeleteModal(prod, e)}
           >
             ✕
           </button>
 
-          {/* Contenedor vertical para que el texto quede justo debajito */}
+          {/* Contenedor vertical para el switch */}
           <div className="toggle-vertical-wrapper">
             <label className="switch">
               <input
@@ -196,6 +207,38 @@ export default function Products() {
         </div>
 
         <Navbar />
+
+        {/* MODAL DE CONFIRMACIÓN DE BORRADO MODERNIZADO */}
+        {productToDelete && (
+          <div className="modal-overlay" onClick={() => setProductToDelete(null)}>
+            <div className="modal-container leave-modal" onClick={(e) => e.stopPropagation()}>
+              <h2 className="modal-leave-title">Eliminar producto</h2>
+              <p className="modal-leave-text">
+                ¿Seguro que quieres eliminar <strong>"{productToDelete.tipo || productToDelete.nombre}"</strong>?
+              </p>
+
+              <div className="modal-leave-actions">
+                <button
+                  type="button"
+                  className="secondary-button"
+                  onClick={() => setProductToDelete(null)}
+                  disabled={deleting}
+                >
+                  CANCELAR
+                </button>
+                <button
+                  type="button"
+                  className="primary-button leave-confirm-btn"
+                  style={{ backgroundColor: "#e53e3e !important" }}
+                  onClick={handleConfirmDelete}
+                  disabled={deleting}
+                >
+                  {deleting ? "BORRANDO..." : "ELIMINAR"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Modal de Imagen */}
         {selectedImage && (
