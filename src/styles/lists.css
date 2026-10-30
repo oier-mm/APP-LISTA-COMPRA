@@ -1,0 +1,191 @@
+.list-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border: 2px solid #e8f5e9;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.list-card:active {
+  transform: scale(0.98);
+}
+
+.list-card-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.list-icon {
+  font-size: 24px;
+}
+
+.list-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1b3313;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.list-menu-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2e7d32;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.list-menu-btn:hover {
+  background: #f0fdf4;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #718096;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* --- TARJETAS DE LISTAS CON PROGRESO "CHULAS" --- */
+.list-card-fancy {
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 14px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.list-card-fancy:hover {
+  transform: translateY(-2px) !important;
+  border-color: #a5d6a7 !important;
+  box-shadow: 0 6px 18px rgba(67, 160, 71, 0.1) !important;
+}
+
+.list-card-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 10px !important;
+}
+
+.list-title-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.list-icon {
+  font-size: 20px !important;
+}
+
+.list-title {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #1a202c !important;
+  text-transform: uppercase !important;
+}
+
+/* Insignia de conteo */
+.list-progress-badge {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  padding: 4px 10px !important;
+  border-radius: 12px !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.list-progress-badge.complete {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border-color: #86efac !important;
+}
+
+/* Barra de progreso de la tarjeta */
+.list-card-progress-bg {
+  width: 100% !important;
+  height: 8px !important;
+  background-color: #f1f5f9 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+.list-card-progress-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #66bb6a, #43a047) !important;
+  border-radius: 10px !important;
+  transition: width 0.3s ease !important;
+}
+
+/* --- BOTÓN Y BANNER DE LISTA COMPLETADA --- */
+.complete-list-banner {
+  margin-top: 24px !important;
+  padding: 10px 0 !important;
+  animation: fadeIn 0.3s ease-in-out !important;
+}
+
+.complete-list-btn {
+  width: 100% !important;
+  padding: 14px 20px !important;
+  background: linear-gradient(135deg, #2e7d32, #43a047) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 16px !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.complete-list-btn:hover {
+  transform: scale(1.02) !important;
+}
+
+.products-counter-badge {
+  background: #e8f5e9 !important;
+  color: #2e7d32 !important;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  padding: 6px 12px !important;
+  border-radius: 12px !important;
+  border: 1px solid #a5d6a7 !important;
+}
+
+/* --- BOTÓN DENTRO DE LA TARJETA DE LISTA --- */
+.complete-list-btn-card {
+  width: 100% !important;
+  padding: 10px 14px !important;
+  background: linear-gradient(135deg, #2e7d32, #43a047) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.complete-list-btn-card:hover {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+  transform: translateY(-1px) !important;
+}
