@@ -156,7 +156,9 @@ export default function Sections() {
             secciones.map((sec) => {
               const isOpen = openMenuId === sec.id;
               const numPersonas = sec.miembros ? sec.miembros.length : 1;
-              const codigoSeccion = sec.codigo || sec.id.slice(0, 6).toUpperCase();
+              
+              // AQUÍ ESTÁ EL CAMBIO: Usamos el ID completo en lugar de recortarlo
+              const codigoSeccion = sec.codigo || sec.id;
 
               return (
                 <div key={sec.id} className="section-card-wrapper" style={{ position: "relative", marginBottom: "12px" }}>
@@ -203,7 +205,7 @@ export default function Sections() {
                     </div>
                   </div>
 
-                  {/* Panel desplegable con código y botón de copiar */}
+                  {/* Panel desplegable con código completo y botón de copiar */}
                   {isOpen && (
                     <div
                       className="section-dropdown-panel"
@@ -226,10 +228,12 @@ export default function Sections() {
                         padding: "10px 14px",
                         borderRadius: "8px",
                         border: "1px solid #edf2f7",
-                        marginBottom: "10px"
+                        marginBottom: "10px",
+                        gap: "8px",
+                        overflowX: "auto"
                       }}>
-                        <span style={{ fontSize: "13px", fontWeight: "800", color: "#4a5568" }}>
-                          CÓDIGO: <strong style={{ color: "#2f855a", letterSpacing: "1px" }}>{codigoSeccion}</strong>
+                        <span style={{ fontSize: "12px", fontWeight: "800", color: "#4a5568", wordBreak: "break-all" }}>
+                          CÓDIGO: <strong style={{ color: "#2f855a", letterSpacing: "0.5px" }}>{codigoSeccion}</strong>
                         </span>
                         <button
                           type="button"
@@ -242,7 +246,8 @@ export default function Sections() {
                             fontSize: "12px",
                             padding: "6px 12px",
                             borderRadius: "6px",
-                            cursor: "pointer"
+                            cursor: "pointer",
+                            flexShrink: 0
                           }}
                         >
                           {copiedId === sec.id ? "¡Copiado! ✓" : "Copiar 📋"}

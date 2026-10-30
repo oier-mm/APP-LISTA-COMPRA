@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../services/firebase";
-import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import Navbar from "../components/Navbar";
 import "../styles/sections.css";
 
@@ -13,8 +13,8 @@ export default function JoinSection() {
 
   const handleJoin = async (e) => {
     e.preventDefault();
-    const codigoTrim = codigo.trim().toUpperCase();
-    if (!codigoTrim) {
+    const codigoInput = codigo.trim();
+    if (!codigoInput) {
       setError("Por favor, introduce un código válido.");
       return;
     }
@@ -29,33 +29,28 @@ export default function JoinSection() {
         return;
       }
 
-      const sectionsRef = collection(db, "sections");
-      const allSectionsSnapshot = await getDocs(sectionsRef);
-      let targetSection = null;
+      // Como el código es el ID del documento en la colección "secciones"
+      const sectionRef = doc(db, "secciones", codigoInput);
+      const sectionSnap = await getDoc(sectionRef);
 
-      allSectionsSnapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        const secCode = data.codigo || docSnap.id.slice(0, 6).toUpperCase();
-        if (secCode === codigoTrim || docSnap.id === codigo.trim()) {
-          targetSection = { id: docSnap.id, ...data };
-        }
-      });
-
-      if (!targetSection) {
+      if (!sectionSnap.exists()) {
         setError("No se ha encontrado ninguna sección con ese código.");
         setLoading(false);
         return;
       }
 
-      const miembros = targetSection.miembros || [];
+      const sectionData = sectionSnap.data();
+      const miembros = sectionData.miembros || [];
+
+      // Si el usuario no es miembro, lo añadimos al array
       if (!miembros.includes(user.uid)) {
-        const sectionRef = doc(db, "sections", targetSection.id);
         await updateDoc(sectionRef, {
           miembros: arrayUnion(user.uid)
         });
       }
 
-      localStorage.setItem("seccionActual", targetSection.id);
+      // Guardamos la sección actual y redirigimos
+      localStorage.setItem("seccionActual", sectionSnap.id);
       navigate("/listas");
 
     } catch (err) {
@@ -86,7 +81,7 @@ export default function JoinSection() {
         <div className="scrollable-products-area" style={{ padding: "20px" }}>
           <div className="card" style={{ padding: "20px", background: "white", borderRadius: "12px", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
             <p style={{ color: "#4a5568", fontSize: "14px", marginBottom: "20px", textAlign: "center" }}>
-              Introduce el código de la sección a la que deseas unirte.
+              Introduce el código de la sección para unirte.
             </p>
 
             <form onSubmit={handleJoin} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -98,17 +93,15 @@ export default function JoinSection() {
                   type="text"
                   value={codigo}
                   onChange={(e) => setCodigo(e.target.value)}
-                  placeholder="Ej: ABC123"
+                  placeholder="Ej: 2KQrjfMMnIDbf1hazXXX"
                   style={{
                     width: "100%",
                     padding: "12px",
-                    fontSize: "16px",
-                    textTransform: "uppercase",
+                    fontSize: "14px",
                     borderRadius: "8px",
                     border: "1px solid #cbd5e0",
                     outline: "none",
                     textAlign: "center",
-                    letterSpacing: "2px",
                     fontWeight: "bold"
                   }}
                   required
@@ -127,7 +120,7 @@ export default function JoinSection() {
                 style={{ padding: "14px", fontSize: "16px", fontWeight: "bold", borderRadius: "8px", cursor: "pointer" }}
                 disabled={loading}
               >
-                {loading ? "UNIENDO..." : "UNIRSE"}
+                {loading ? "BUSCANDO..." : "UNIRSE"}
               </button>
 
               <button
