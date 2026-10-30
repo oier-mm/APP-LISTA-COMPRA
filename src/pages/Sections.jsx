@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../services/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { getSections, leaveOrDeleteSection } from "../services/sectionService";
 import Navbar from "../components/Navbar";
 
@@ -7,8 +9,14 @@ import "../styles/sections.css";
 
 export default function Sections() {
   const navigate = useNavigate();
-  const [secciones, setSecciones] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
+  // Cargamos primero de localStorage si existe para que aparezcan al instante
+  const [secciones, setSecciones] = useState(() => {
+    const cached = localStorage.getItem("cached_secciones");
+    return cached ? JSON.parse(cached) : [];
+  });
+  
+  const [loading, setLoading] = useState(secciones.length === 0);
   const [openMenuId, setOpenMenuId] = useState(null);
 
   // Estado para el modal de confirmar salida/borrado
@@ -19,8 +27,17 @@ export default function Sections() {
   const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
-    fetchSecciones();
-  }, []);
+    // Esperamos a que Firebase confirme el usuario logueado de forma segura
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        navigate("/login");
+        return;
+      }
+      await fetchSecciones();
+    });
+
+    return () => unsubscribeAuth();
+  }, [navigate]);
 
   // Cerrar menú desplegable al hacer clic fuera
   useEffect(() => {
@@ -37,6 +54,7 @@ export default function Sections() {
     try {
       const data = await getSections();
       setSecciones(data);
+      localStorage.setItem("cached_secciones", JSON.stringify(data));
     } catch (error) {
       console.error("Error al cargar secciones:", error);
     } finally {
@@ -77,7 +95,9 @@ export default function Sections() {
       if (localStorage.getItem("seccionActual") === sectionToLeave.id) {
         localStorage.removeItem("seccionActual");
       }
-      setSecciones((prev) => prev.filter((s) => s.id !== sectionToLeave.id));
+      const nuevasSecciones = secciones.filter((s) => s.id !== sectionToLeave.id);
+      setSecciones(nuevasSecciones);
+      localStorage.setItem("cached_secciones", JSON.stringify(nuevasSecciones));
       setSectionToLeave(null);
     } catch (error) {
       console.error("Error al abandonar la sección:", error);
@@ -126,8 +146,8 @@ export default function Sections() {
         </div>
 
         <div className="scrollable-products-area">
-          {loading ? (
-            <p style={{ textAlign: "center", color: "#666" }}>Cargando secciones...</p>
+          {loading && secciones.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#666", marginTop: "40px" }}>Cargando secciones...</p>
           ) : secciones.length === 0 ? (
             <p style={{ textAlign: "center", color: "#666", marginTop: "40px" }}>
               No tienes ninguna sección. ¡Crea una o únete a una existente!
