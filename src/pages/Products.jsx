@@ -73,10 +73,11 @@ export default function Products() {
           <h2 className="product-title-v2">
             {prod.categoria || prod.nombre}
           </h2>
-          <div className="product-subtitle-v2">
-            <span>Tipo: {prod.tipo || prod.nombre}</span>
-            <span> • </span>
-            <span>Cantidad: {prod.cantidad || 1}</span>
+          
+          {/* SEPARADOS EN DOS PASTILLAS BLANCAS INDEPENDIENTES */}
+          <div className="product-details-row">
+            <span className="product-badge-tipo">Tipo: {prod.tipo || prod.nombre}</span>
+            <span className="product-badge-cantidad">Cantidad: {prod.cantidad || 1}</span>
           </div>
 
           {prod.descripcion && (
@@ -166,7 +167,7 @@ export default function Products() {
             style={{ marginBottom: "16px", textTransform: "uppercase" }}
             onClick={() => navigate("/nuevo-producto")}
           >
-            NUEVO PRODUCTO
+            AÑADIR PRODUCTO
           </button>
 
           {/* Listado de productos */}

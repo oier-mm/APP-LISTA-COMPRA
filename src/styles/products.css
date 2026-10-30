@@ -196,29 +196,59 @@
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 2px !important;
+  gap: 6px !important;
   overflow: hidden !important;
 }
 
 .product-title-v2 {
   margin: 0 !important;
-  font-size: 19px !important;
+  font-size: 20px !important;
   font-weight: 800 !important;
   color: #ffffff !important;
   line-height: 1.2 !important;
 }
 
-.product-card-green-v2 .product-title-v2,
-.product-card-green-v2 .product-subtitle-v2 {
+.product-card-green-v2 .product-title-v2 {
   text-decoration: line-through !important;
   text-decoration-thickness: 2px !important;
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
-.product-subtitle-v2 {
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+.product-card-green-v2 .product-badge-tipo,
+.product-card-green-v2 .product-badge-cantidad {
+  opacity: 0.85 !important;
+}
+
+/* CONTENEDOR PARA LAS DOS PASTILLAS SEPARADAS */
+.product-details-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 4px !important;
+}
+
+/* PASTILLA 1: TIPO */
+.product-badge-tipo {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #2d3748 !important;
+  background: #ffffff !important;
+  padding: 5px 10px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  display: inline-block !important;
+}
+
+/* PASTILLA 2: CANTIDAD */
+.product-badge-cantidad {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #2d3748 !important;
+  background: #ffffff !important;
+  padding: 5px 10px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  display: inline-block !important;
 }
 
 .product-desc-v2 {

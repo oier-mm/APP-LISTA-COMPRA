@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Sections from "./pages/Sections";
 import CreateSection from "./pages/CreateSection";
+import JoinSection from "./pages/JoinSection";
 import Lists from "./pages/Lists";
 import CreateList from "./pages/CreateList";
 import Products from "./pages/Products";
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/registro" element={<Register />} />
         <Route path="/secciones" element={<Sections />} />
         <Route path="/crear-seccion" element={<CreateSection />} />
+        <Route path="/unirse-seccion" element={<JoinSection />} />
         <Route path="/listas" element={<Lists />} />
         <Route path="/crear-lista" element={<CreateList />} />
         <Route path="/productos" element={<Products />} />
